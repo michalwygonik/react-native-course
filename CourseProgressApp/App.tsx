@@ -1,32 +1,58 @@
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, Button, StyleSheet, Text, TextInput, View } from "react-native";
 import LessonsList from "./src/lessons/lessons";
+import { useState } from "react";
 
 export default function App() {
+  interface CourseGoals {
+    id: string;
+    content: string;
+  }
+  const [goalText, setGoalText] = useState("");
+  const [courseGoals, setCourseGoals] = useState<CourseGoals[]>([]);
+
+  const handleTextChange = (e: string) => {
+    setGoalText(e);
+  };
+
+  const handleAddGoal = () => {
+    if (goalText.trim().length === 0) {
+      Alert.alert("Something went wrong, text is empty");
+      return;
+    }
+
+    setCourseGoals((currentGoals) => [
+      ...currentGoals,
+      { id: Math.random().toString(), content: goalText },
+    ]);
+    setGoalText("");
+  };
+
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput placeholder="Your course goal!" style={styles.textInput} />
-        <Button title="Add Goal!" />
+        <TextInput
+          placeholder="Your course goal!"
+          style={styles.textInput}
+          onChangeText={handleTextChange}
+        />
+        <Button title="Add Goal!" onPress={handleAddGoal} />
       </View>
-      <View>
-        <LessonsList />
-      </View>
+      <LessonsList courseGoals={courseGoals} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   appContainer: {
-    paddingTop: 50,
-    paddingHorizontal: 24,
-    justifyContent: "center",
-    alignContent: "center",
+    flex: 1,
+    margin: 24,
   },
   inputContainer: {
+    flex: 2,
+    marginBottom: 18,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 24,
     borderBottomWidth: 1,
     borderBottomColor: "rgba(0, 0, 0, 0.2)",
   },

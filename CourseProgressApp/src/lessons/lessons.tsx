@@ -1,26 +1,25 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 
-const LessonsList = () => {
-  const lessons = [
-    {
-      id: 1,
-      title: "intro",
-    },
-    {
-      id: 2,
-      title: "work",
-    },
-  ];
+export type LessonListProps = {
+  courseGoals: { id: string; content: string }[];
+};
+
+const LessonsList: React.FC<LessonListProps> = ({ courseGoals }) => {
   return (
     <View style={styles.listContainer}>
       <FlatList
-        data={lessons}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
+        alwaysBounceVertical={false}
+        style={styles.flatListContainer}
+        data={courseGoals}
+        keyExtractor={(item) => item.id}
+        ListEmptyComponent={
           <View>
-            <Text>
-              {item.id}. {item.title}
-            </Text>
+            <Text>No goals added yet!</Text>
+          </View>
+        }
+        renderItem={({ item }) => (
+          <View style={styles.textItemContainer}>
+            <Text>{item.content}</Text>
           </View>
         )}
       />
@@ -30,11 +29,18 @@ const LessonsList = () => {
 
 const styles = StyleSheet.create({
   listContainer: {
-    marginTop: 12,
+    flex: 6,
+    marginVertical: 12,
     padding: 12,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: "rgba(0,0,0,0.2)",
+  },
+  flatListContainer: {
+    padding: 12,
+  },
+  textItemContainer: {
+    backgroundColor: "lightgray",
+    padding: 6,
+    marginBottom: 8,
+    borderRadius: 10,
   },
 });
 
