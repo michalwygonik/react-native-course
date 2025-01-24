@@ -11,6 +11,12 @@ export default function App() {
   const [goalText, setGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState<CourseGoals[]>([]);
 
+  const removeGoalHandler = (id: string) => {
+    setCourseGoals((currentGoals) =>
+      currentGoals.filter((goal) => goal.id !== id)
+    );
+  };
+
   return (
     <View style={styles.appContainer}>
       <GoalInput
@@ -19,7 +25,7 @@ export default function App() {
         courseGoals={courseGoals}
         setCourseGoals={setCourseGoals}
       />
-      <GoalsList courseGoals={courseGoals} />
+      <GoalsList courseGoals={courseGoals} onDeleteGoal={removeGoalHandler} />
     </View>
   );
 }

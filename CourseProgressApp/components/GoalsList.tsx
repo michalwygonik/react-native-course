@@ -4,9 +4,10 @@ import GoalItem from "./GoalItem";
 
 export type GoalListProps = {
   courseGoals: { id: string; content: string }[];
+  onDeleteGoal: (id: string) => void;
 };
 
-const GoalsList: React.FC<GoalListProps> = ({ courseGoals }) => {
+const GoalsList: React.FC<GoalListProps> = ({ courseGoals, onDeleteGoal }) => {
   return (
     <View style={styles.listContainer}>
       <FlatList
@@ -19,7 +20,13 @@ const GoalsList: React.FC<GoalListProps> = ({ courseGoals }) => {
             <Text>No goals added yet!</Text>
           </View>
         }
-        renderItem={({ item }) => <GoalItem item={item} />}
+        renderItem={({ item }) => (
+          <GoalItem
+            id={item.id}
+            content={item.content}
+            onDelete={onDeleteGoal}
+          />
+        )}
       />
     </View>
   );

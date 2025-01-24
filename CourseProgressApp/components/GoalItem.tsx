@@ -1,16 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
-export type DataProps = {
+export type GoalItemProps = {
   id: string;
   content: string;
+  onDelete: (id: string) => void;
 };
 
-const GoalItem: React.FC<{ item: DataProps }> = ({ item }) => {
+const GoalItem: React.FC<GoalItemProps> = ({ id, content, onDelete }) => {
   return (
-    <View style={styles.goalItemContainer}>
-      <Text>{item.content}</Text>
-    </View>
+    <Pressable onPress={() => onDelete(id)}>
+      <View style={styles.goalItemContainer}>
+        <Text>{content}</Text>
+      </View>
+    </Pressable>
   );
 };
 
