@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableNativeFeedback, View } from "react-native";
 
 export type GoalItemProps = {
   id: string;
@@ -9,20 +9,31 @@ export type GoalItemProps = {
 
 const GoalItem: React.FC<GoalItemProps> = ({ id, content, onDelete }) => {
   return (
-    <Pressable onPress={() => onDelete(id)}>
-      <View style={styles.goalItemContainer}>
-        <Text>{content}</Text>
-      </View>
-    </Pressable>
+    <View style={styles.goalItemContainer}>
+      <TouchableNativeFeedback
+        onPress={() => onDelete(id)}
+        background={TouchableNativeFeedback.Ripple("#ccc", false)}
+      >
+        <View style={styles.goalItemContent}>
+          <Text style={styles.goalItemText}>{content}</Text>
+        </View>
+      </TouchableNativeFeedback>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   goalItemContainer: {
-    backgroundColor: "lightgray",
-    padding: 6,
-    marginBottom: 8,
     borderRadius: 10,
+    marginBottom: 8,
+    overflow: "hidden",
+  },
+  goalItemContent: {
+    borderRadius: 10,
+    backgroundColor: "lightgray",
+  },
+  goalItemText: {
+    padding: 6,
   },
 });
 export default GoalItem;

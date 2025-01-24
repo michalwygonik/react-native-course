@@ -8,8 +8,19 @@ export default function App() {
     id: string;
     content: string;
   }
+
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
   const [goalText, setGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState<CourseGoals[]>([]);
+
+  const handleStartAddGoal = () => {
+    setModalIsVisible(true);
+  };
+
+  const handleEndAddGoal = () => {
+    setModalIsVisible(false);
+  };
 
   const removeGoalHandler = (id: string) => {
     setCourseGoals((currentGoals) =>
@@ -19,11 +30,17 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
+      <View style={styles.button}>
+        <Button title="Add New Goal" onPress={handleStartAddGoal} />
+      </View>
+
       <GoalInput
         goalText={goalText}
         setGoalText={setGoalText}
         courseGoals={courseGoals}
         setCourseGoals={setCourseGoals}
+        visible={modalIsVisible}
+        endAddGoal={handleEndAddGoal}
       />
       <GoalsList courseGoals={courseGoals} onDeleteGoal={removeGoalHandler} />
     </View>
@@ -33,6 +50,13 @@ export default function App() {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    margin: 24,
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    padding: 24,
+    backgroundColor: "rgb(107, 107, 107)",
+  },
+  button: {
+    marginVertical: 32,
+    width: "50%",
   },
 });

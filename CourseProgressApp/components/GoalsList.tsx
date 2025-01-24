@@ -34,9 +34,9 @@ const GoalsList: React.FC<GoalListProps> = ({ courseGoals, onDeleteGoal }) => {
 
 const styles = StyleSheet.create({
   listContainer: {
-    flex: 6,
     marginVertical: 12,
     padding: 12,
+    width: "100%",
   },
   flatListContainer: {
     padding: 12,
