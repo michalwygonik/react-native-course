@@ -17,7 +17,7 @@ const GoalsList: React.FC<GoalListProps> = ({ courseGoals, onDeleteGoal }) => {
         keyExtractor={(item) => item.id}
         ListEmptyComponent={
           <View>
-            <Text>No goals added yet!</Text>
+            <Text style={styles.text}>No goals added yet!</Text>
           </View>
         }
         renderItem={({ item }) => (
@@ -40,6 +40,10 @@ const styles = StyleSheet.create({
   },
   flatListContainer: {
     padding: 12,
+  },
+  text: {
+    fontSize: 16,
+    color: "#f0f0f0",
   },
 });
 

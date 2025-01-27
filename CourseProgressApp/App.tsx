@@ -1,62 +1,33 @@
-import { Alert, Button, StyleSheet, Text, TextInput, View } from "react-native";
-import { useState } from "react";
-import GoalsList from "./components/GoalsList";
-import GoalInput from "./components/GoalInput";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import TodoGoals from "./apps/TodoGoals/TodoGoals";
+import HomeScreen from "./HomeScreen";
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  interface CourseGoals {
-    id: string;
-    content: string;
-  }
-
-  const [modalIsVisible, setModalIsVisible] = useState(false);
-
-  const [goalText, setGoalText] = useState("");
-  const [courseGoals, setCourseGoals] = useState<CourseGoals[]>([]);
-
-  const handleStartAddGoal = () => {
-    setModalIsVisible(true);
-  };
-
-  const handleEndAddGoal = () => {
-    setModalIsVisible(false);
-  };
-
-  const removeGoalHandler = (id: string) => {
-    setCourseGoals((currentGoals) =>
-      currentGoals.filter((goal) => goal.id !== id)
-    );
-  };
-
   return (
-    <View style={styles.appContainer}>
-      <View style={styles.button}>
-        <Button title="Add New Goal" onPress={handleStartAddGoal} />
-      </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#1F1F1F",
+            height: 90,
+          },
 
-      <GoalInput
-        goalText={goalText}
-        setGoalText={setGoalText}
-        courseGoals={courseGoals}
-        setCourseGoals={setCourseGoals}
-        visible={modalIsVisible}
-        endAddGoal={handleEndAddGoal}
-      />
-      <GoalsList courseGoals={courseGoals} onDeleteGoal={removeGoalHandler} />
-    </View>
+          headerTintColor: "#f0f0f0",
+          headerTitleStyle: {
+            fontWeight: "100",
+            fontSize: 18,
+          },
+        }}
+      >
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Todo Goals" component={TodoGoals} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  appContainer: {
-    flex: 1,
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    padding: 24,
-    backgroundColor: "rgb(107, 107, 107)",
-  },
-  button: {
-    marginVertical: 32,
-    width: "50%",
-  },
-});

@@ -55,7 +55,7 @@ const GoalInput: React.FC<GoalInputProps> = ({
       <View style={styles.inputContainer}>
         <Image
           style={styles.image}
-          source={require("../assets/images/goal.png")}
+          source={require("../../../assets/images/goal.png")}
         />
         <TextInput
           placeholder="Your course goal"
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     padding: 16,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgb(107, 107, 107)",
+    backgroundColor: "#1D1D1D",
   },
   image: {
     width: 100,
