@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
-import GoalInput from "./components/GoalInput"; // Przykład: załóżmy, że masz komponent GoalInput
-import GoalsList from "./components/GoalsList"; // Przykład: załóżmy, że masz komponent GoalsList
+import { StyleSheet, View, Button } from "react-native";
+import GoalInput from "./components/GoalInput";
+import GoalsList from "./components/GoalsList";
 
 const TodoGoals: React.FC = () => {
   const [modalIsVisible, setModalIsVisible] = useState(false);
