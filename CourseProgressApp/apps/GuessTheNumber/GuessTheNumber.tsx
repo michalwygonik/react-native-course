@@ -3,13 +3,12 @@ import StartGame from "./screens/StartGame";
 
 const GuessTheNumber: React.FC = () => {
   return (
-    <View>
-      <Text>Guess the Number</Text>
+    <View style={styles.container}>
       <StartGame />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({ container: { flex: 1 } });
 
 export default GuessTheNumber;
