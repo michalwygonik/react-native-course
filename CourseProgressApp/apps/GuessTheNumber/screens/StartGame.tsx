@@ -1,7 +1,31 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
+import { useState } from "react";
 
 const StartGame: React.FC = () => {
+  const [number, setNumber] = useState<string>("");
+
+  const handleNumberInput = (input: string) => {
+    if (/^[0-9]*$/.test(input)) {
+      setNumber(input);
+    }
+  };
+
+  const handleConfirm = () => {
+    const parsedNumber = parseInt(number, 10);
+    if (isNaN(parsedNumber) || parsedNumber < 1 || parsedNumber > 99) {
+      Alert.alert("Invalid number", "Please enter a number between 1 and 99", [
+        { text: "Okay" },
+      ]);
+    } else {
+      console.log("Valid, number: ", parsedNumber);
+    }
+  };
+
+  const handleReset = () => {
+    setNumber("");
+  };
+
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -9,17 +33,32 @@ const StartGame: React.FC = () => {
         maxLength={2}
         keyboardType="number-pad"
         autoCorrect={false}
+        value={number}
+        onChangeText={handleNumberInput}
       />
-      <PrimaryButton title="Reset" />
-      <PrimaryButton title="Confirm" />
+      <View style={styles.buttonsContainer}>
+        <PrimaryButton
+          title="Reset"
+          onPress={handleReset}
+          background="#eb6b02"
+          color="#fafafa"
+        />
+        <PrimaryButton
+          title="Confirm"
+          onPress={handleConfirm}
+          background="#eb6b02"
+          color="#fafafa"
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   inputContainer: {
+    alignItems: "center",
     padding: 16,
-    marginTop: 100,
+    marginTop: 60,
     marginHorizontal: 24,
     borderRadius: 8,
     backgroundColor: "#FAC97E",
@@ -33,12 +72,17 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     fontSize: 24,
-    borderBottomColor: "#BB7DFA",
+    borderBottomColor: "#9b38ff",
     borderBottomWidth: 2,
-    color: "#BB7DFA",
+    color: "#9b38ff",
     margin: 8,
     fontWeight: "600",
     textAlign: "center",
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+    gap: 25,
+    marginTop: 24,
   },
 });
 
