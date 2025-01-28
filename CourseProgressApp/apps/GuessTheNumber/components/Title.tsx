@@ -1,4 +1,5 @@
 import { StyleSheet, Text } from "react-native";
+import Colors from "../utils/colors";
 
 interface TitleProps {
   title: string;
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: 700,
     textAlign: "center",
-    color: "#e3ba81",
+    color: Colors.primary500,
   },
 });
 export default Title;

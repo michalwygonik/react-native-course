@@ -1,6 +1,7 @@
 import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import { useState } from "react";
+import Colors from "../utils/colors";
 
 interface StartGameProps {
   onPickNumber: (pickedNumber: number) => void;
@@ -46,13 +47,13 @@ const StartGame: React.FC<StartGameProps> = ({ onPickNumber }) => {
           title="Reset"
           onPress={handleReset}
           background="#eb6b02"
-          color="#fafafa"
+          color={Colors.text}
         />
         <PrimaryButton
           title="Confirm"
           onPress={handleConfirm}
           background="#eb6b02"
-          color="#fafafa"
+          color={Colors.text}
         />
       </View>
     </View>
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
     marginHorizontal: 24,
     borderRadius: 8,
-    backgroundColor: "#FAC97E",
+    backgroundColor: Colors.primary400,
     elevation: 5,
     shadowColor: "#000", // Color of the shadow
     shadowOffset: { width: 0, height: 2 }, // Offset for the shadow
@@ -77,9 +78,9 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     fontSize: 24,
-    borderBottomColor: "#9b38ff",
+    borderBottomColor: Colors.accent400,
     borderBottomWidth: 2,
-    color: "#9b38ff",
+    color: Colors.accent400,
     margin: 8,
     fontWeight: "600",
     textAlign: "center",

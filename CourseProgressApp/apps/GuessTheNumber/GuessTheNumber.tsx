@@ -3,6 +3,7 @@ import StartGame from "./screens/StartGame";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import Game from "./screens/Game";
+import Colors from "./utils/colors";
 
 const GuessTheNumber: React.FC = () => {
   const [userNumber, setUserNumber] = useState<number | null>(null);
@@ -17,7 +18,10 @@ const GuessTheNumber: React.FC = () => {
     screen = <Game />;
   }
   return (
-    <LinearGradient colors={["#6106bd", "#e3ba81"]} style={styles.rootScreen}>
+    <LinearGradient
+      colors={[Colors.accent500, Colors.primary500]}
+      style={styles.rootScreen}
+    >
       <ImageBackground
         source={require("./images/background.png")}
         resizeMode="cover"
