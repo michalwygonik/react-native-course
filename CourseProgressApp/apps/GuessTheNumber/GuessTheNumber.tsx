@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import StartGame from "./screens/StartGame";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
@@ -24,7 +24,7 @@ const GuessTheNumber: React.FC = () => {
         style={styles.rootScreen}
         imageStyle={{ opacity: 0.15 }}
       >
-        {screen}
+        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );
