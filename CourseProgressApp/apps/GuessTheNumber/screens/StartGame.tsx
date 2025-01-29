@@ -2,7 +2,7 @@ import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { useState } from "react";
 import Colors from "../utils/colors";
-
+import Title from "../components/ui/Title";
 interface StartGameProps {
   onPickNumber: (pickedNumber: number) => void;
 }
@@ -31,34 +31,42 @@ const StartGame: React.FC<StartGameProps> = ({ onPickNumber }) => {
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        maxLength={2}
-        keyboardType="number-pad"
-        autoCorrect={false}
-        value={number}
-        onChangeText={handleNumberInput}
-      />
-      <View style={styles.buttonsContainer}>
-        <PrimaryButton
-          title="Reset"
-          onPress={handleReset}
-          background="#eb6b02"
-          color={Colors.text}
+    <View style={styles.rootContainer}>
+      <Title title="Guess the Number game" />
+      <View style={styles.inputContainer}>
+        <Text style={styles.instructionText}>Enter a number below</Text>
+        <TextInput
+          style={styles.textInput}
+          maxLength={2}
+          keyboardType="number-pad"
+          autoCorrect={false}
+          value={number}
+          onChangeText={handleNumberInput}
         />
-        <PrimaryButton
-          title="Confirm"
-          onPress={handleConfirm}
-          background="#eb6b02"
-          color={Colors.text}
-        />
+        <View style={styles.buttonsContainer}>
+          <PrimaryButton
+            title="Reset"
+            onPress={handleReset}
+            background="#eb6b02"
+            color={Colors.text}
+          />
+          <PrimaryButton
+            title="Confirm"
+            onPress={handleConfirm}
+            background="#eb6b02"
+            color={Colors.text}
+          />
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    marginTop: 24,
+  },
   inputContainer: {
     alignItems: "center",
     padding: 16,
@@ -71,6 +79,11 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, // Offset for the shadow
     shadowOpacity: 0.3, // Opacity of the shadow
     shadowRadius: 4, // Blur radius for the shadow
+  },
+  instructionText: {
+    fontSize: 18,
+    color: Colors.accent500,
+    fontWeight: 300,
   },
   textInput: {
     height: 50,

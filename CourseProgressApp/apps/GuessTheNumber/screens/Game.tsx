@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import NumberContainer from "../components/game/NumberContainer";
 import Colors from "../utils/colors";
+import { FontAwesome } from "@expo/vector-icons";
 
 interface GameProps {
   userNumber: number;
@@ -73,15 +74,16 @@ const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
 
   return (
     <View style={styles.screen}>
-      <Title title="Oponent's Guess" />
-      <Text>{userNumber}</Text>
+      <Title title="Opponent's Guess" />
 
       <NumberContainer randomNumber={randomNumber} />
       <View>
         <Text style={styles.buttonsTitle}>Higher or Lower?</Text>
         <View style={styles.buttonsContainer}>
           <PrimaryButton
-            title="+"
+            title={
+              <FontAwesome name="plus" size={18} color={Colors.accent500} />
+            }
             background="white"
             color="black"
             onPress={() =>
@@ -94,7 +96,9 @@ const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
             }
           />
           <PrimaryButton
-            title="-"
+            title={
+              <FontAwesome name="minus" size={18} color={Colors.accent500} />
+            }
             background="white"
             color="black"
             onPress={() =>
@@ -133,6 +137,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 24,
     marginHorizontal: 12,
+    marginTop: 12,
   },
 });
 

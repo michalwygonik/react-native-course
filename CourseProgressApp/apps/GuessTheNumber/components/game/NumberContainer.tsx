@@ -15,8 +15,7 @@ const NumberContainer: React.FC<NumberContainerProps> = ({ randomNumber }) => {
 
 const styles = StyleSheet.create({
   numberContainer: {
-    marginHorizontal: 50,
-    marginVertical: 25,
+    margin: 50,
     borderWidth: 3,
     borderColor: Colors.primary500,
     borderRadius: 5,

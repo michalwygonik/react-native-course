@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 interface PrimaryButtonProps {
-  title: string;
+  title: React.ReactNode;
   onPress: () => void;
   background: string;
   color: string;
