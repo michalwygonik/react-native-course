@@ -4,19 +4,31 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import Game from "./screens/Game";
 import Colors from "./utils/colors";
+import GameOver from "./screens/GameOver";
 
 const GuessTheNumber: React.FC = () => {
   const [userNumber, setUserNumber] = useState<number | null>(null);
+  const [isGameOver, setIsGameOver] = useState<boolean>(true);
 
   const pickedNumber = (pickedNumber: number) => {
     setUserNumber(pickedNumber);
+    setIsGameOver(false);
+  };
+
+  const handleGameOver = () => {
+    setIsGameOver(true);
   };
 
   let screen = <StartGame onPickNumber={pickedNumber} />;
 
   if (userNumber) {
-    screen = <Game userNumber={userNumber} />;
+    screen = <Game userNumber={userNumber} handleGameOver={handleGameOver} />;
   }
+
+  if (isGameOver && userNumber) {
+    screen = <GameOver />;
+  }
+
   return (
     <LinearGradient
       colors={[Colors.accent500, Colors.primary500]}

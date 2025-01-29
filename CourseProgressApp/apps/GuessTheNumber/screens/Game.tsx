@@ -7,8 +7,8 @@ import Colors from "../utils/colors";
 
 interface GameProps {
   userNumber: number;
+  handleGameOver: () => void;
 }
-
 const generateRandomNumber = (
   min: number,
   max: number,
@@ -24,50 +24,52 @@ const generateRandomNumber = (
 let minValue = 1,
   maxValue = 99;
 
-const handleNextGuess = (
-  direction: string,
-  randomNumber: number,
-  userNumber: number,
-  setRandomNumber: React.Dispatch<React.SetStateAction<number>>
-) => {
-  if (userNumber === randomNumber) {
-    return Alert.alert("Congratulations!", "number guessed");
-  }
-
-  if (direction === "lower") {
-    if (randomNumber > userNumber) {
-      maxValue = randomNumber;
-
-      const random = generateRandomNumber(
-        minValue + 1,
-        maxValue - 1,
-        randomNumber
-      );
-
-      setRandomNumber(random);
-    } else {
-      Alert.alert("Are you sure?", "Your number is greater");
-    }
-  } else if (direction === "greater") {
-    if (randomNumber < userNumber) {
-      minValue = randomNumber;
-
-      const random = generateRandomNumber(
-        minValue + 1,
-        maxValue - 1,
-        randomNumber
-      );
-      setRandomNumber(random);
-    } else {
-      Alert.alert("Are you sure?", "Your number is lower");
-    }
-  }
-  console.log("min: " + minValue + ", max: " + maxValue);
-};
-
-const Game: React.FC<GameProps> = ({ userNumber }) => {
-  const initialGuess = generateRandomNumber(minValue, maxValue, userNumber);
+const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
+  const initialGuess = generateRandomNumber(1, 99, userNumber);
   const [randomNumber, setRandomNumber] = useState<number>(initialGuess);
+
+  useEffect(() => {
+    if (userNumber === randomNumber) {
+      handleGameOver();
+    }
+  }, [randomNumber, userNumber, handleGameOver]);
+
+  const handleNextGuess = (
+    direction: string,
+    randomNumber: number,
+    userNumber: number,
+    setRandomNumber: React.Dispatch<React.SetStateAction<number>>
+  ) => {
+    if (direction === "lower") {
+      if (randomNumber > userNumber) {
+        maxValue = randomNumber;
+
+        const random = generateRandomNumber(
+          minValue + 1,
+          maxValue - 1,
+          randomNumber
+        );
+
+        setRandomNumber(random);
+      } else {
+        Alert.alert("Are you sure?", "Your number is greater");
+      }
+    } else if (direction === "greater") {
+      if (randomNumber < userNumber) {
+        minValue = randomNumber;
+
+        const random = generateRandomNumber(
+          minValue + 1,
+          maxValue - 1,
+          randomNumber
+        );
+        setRandomNumber(random);
+      } else {
+        Alert.alert("Are you sure?", "Your number is lower");
+      }
+    }
+    console.log("min: " + minValue + ", max: " + maxValue);
+  };
 
   return (
     <View style={styles.screen}>
