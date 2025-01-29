@@ -15,7 +15,7 @@ const GuessTheNumber: React.FC = () => {
   let screen = <StartGame onPickNumber={pickedNumber} />;
 
   if (userNumber) {
-    screen = <Game />;
+    screen = <Game userNumber={userNumber} />;
   }
   return (
     <LinearGradient

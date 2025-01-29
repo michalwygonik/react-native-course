@@ -1,0 +1,32 @@
+import { StyleSheet, Text, View } from "react-native";
+import Colors from "../../utils/colors";
+
+interface NumberContainerProps {
+  randomNumber: number | null;
+}
+
+const NumberContainer: React.FC<NumberContainerProps> = ({ randomNumber }) => {
+  return (
+    <View style={styles.numberContainer}>
+      <Text style={styles.text}>{randomNumber}</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  numberContainer: {
+    marginHorizontal: 50,
+    marginVertical: 25,
+    borderWidth: 3,
+    borderColor: Colors.primary500,
+    borderRadius: 5,
+    padding: 20,
+  },
+  text: {
+    fontSize: 22,
+    color: Colors.primary400,
+    fontWeight: 700,
+    textAlign: "center",
+  },
+});
+export default NumberContainer;
