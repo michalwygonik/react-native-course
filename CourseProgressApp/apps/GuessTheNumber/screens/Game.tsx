@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import Title from "../components/ui/Title";
 import { useEffect, useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import NumberContainer from "../components/game/NumberContainer";
+import Colors from "../utils/colors";
 
 interface GameProps {
   userNumber: number;
@@ -20,13 +21,53 @@ const generateRandomNumber = (
   return randomNumber;
 };
 
-const Game: React.FC<GameProps> = ({ userNumber }) => {
-  const [randomNumber, setRandomNumber] = useState<number | null>(null);
+let minValue = 1,
+  maxValue = 99;
 
-  useEffect(() => {
-    const initialGuess = generateRandomNumber(1, 99, userNumber);
-    setRandomNumber(initialGuess);
-  }, [userNumber]);
+const handleNextGuess = (
+  direction: string,
+  randomNumber: number,
+  userNumber: number,
+  setRandomNumber: React.Dispatch<React.SetStateAction<number>>
+) => {
+  if (userNumber === randomNumber) {
+    return Alert.alert("Congratulations!", "number guessed");
+  }
+
+  if (direction === "lower") {
+    if (randomNumber > userNumber) {
+      maxValue = randomNumber;
+
+      const random = generateRandomNumber(
+        minValue + 1,
+        maxValue - 1,
+        randomNumber
+      );
+
+      setRandomNumber(random);
+    } else {
+      Alert.alert("Are you sure?", "Your number is greater");
+    }
+  } else if (direction === "greater") {
+    if (randomNumber < userNumber) {
+      minValue = randomNumber;
+
+      const random = generateRandomNumber(
+        minValue + 1,
+        maxValue - 1,
+        randomNumber
+      );
+      setRandomNumber(random);
+    } else {
+      Alert.alert("Are you sure?", "Your number is lower");
+    }
+  }
+  console.log("min: " + minValue + ", max: " + maxValue);
+};
+
+const Game: React.FC<GameProps> = ({ userNumber }) => {
+  const initialGuess = generateRandomNumber(minValue, maxValue, userNumber);
+  const [randomNumber, setRandomNumber] = useState<number>(initialGuess);
 
   return (
     <View style={styles.screen}>
@@ -35,19 +76,33 @@ const Game: React.FC<GameProps> = ({ userNumber }) => {
 
       <NumberContainer randomNumber={randomNumber} />
       <View>
-        <Text>Higher or Lower?</Text>
+        <Text style={styles.buttonsTitle}>Higher or Lower?</Text>
         <View style={styles.buttonsContainer}>
           <PrimaryButton
             title="+"
             background="white"
             color="black"
-            onPress={() => null}
+            onPress={() =>
+              handleNextGuess(
+                "greater",
+                randomNumber,
+                userNumber,
+                setRandomNumber
+              )
+            }
           />
           <PrimaryButton
             title="-"
             background="white"
             color="black"
-            onPress={() => null}
+            onPress={() =>
+              handleNextGuess(
+                "lower",
+                randomNumber,
+                userNumber,
+                setRandomNumber
+              )
+            }
           />
         </View>
       </View>
@@ -59,6 +114,16 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 12,
+  },
+  buttonsTitle: {
+    textAlign: "center",
+    backgroundColor: Colors.primary500,
+    padding: 20,
+    margin: 15,
+    borderRadius: 15,
+    fontSize: 24,
+    fontWeight: 600,
+    color: Colors.text,
   },
   buttonsContainer: {
     justifyContent: "center",

@@ -22,8 +22,6 @@ const StartGame: React.FC<StartGameProps> = ({ onPickNumber }) => {
       Alert.alert("Invalid number", "Please enter a number between 1 and 99", [
         { text: "Okay", onPress: handleReset },
       ]);
-    } else {
-      console.log("Valid, number: ", parsedNumber);
     }
     onPickNumber(parsedNumber);
   };
