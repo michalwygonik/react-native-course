@@ -26,7 +26,7 @@ const GuessTheNumber: React.FC = () => {
   }
 
   if (isGameOver && userNumber) {
-    screen = <GameOver />;
+    screen = <GameOver userNumber={userNumber} />;
   }
 
   return (
