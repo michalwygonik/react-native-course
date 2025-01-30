@@ -47,11 +47,7 @@ const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
       if (randomNumber > userNumber) {
         maxValue = randomNumber;
 
-        const random = generateRandomNumber(
-          minValue + 1,
-          maxValue - 1,
-          randomNumber
-        );
+        const random = generateRandomNumber(minValue, maxValue, randomNumber);
 
         setRandomNumber(random);
       } else {
@@ -61,11 +57,7 @@ const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
       if (randomNumber < userNumber) {
         minValue = randomNumber;
 
-        const random = generateRandomNumber(
-          minValue + 1,
-          maxValue - 1,
-          randomNumber
-        );
+        const random = generateRandomNumber(minValue, maxValue, randomNumber);
         setRandomNumber(random);
       } else {
         Alert.alert("Are you sure?", "Your number is lower");
