@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     paddingHorizontal: 6,
     textAlign: "center",
-
     fontWeight: 600,
   },
   pressed: {

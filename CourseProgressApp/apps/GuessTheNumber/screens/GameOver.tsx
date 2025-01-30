@@ -5,25 +5,34 @@ import PrimaryButton from "../components/ui/PrimaryButton";
 
 interface GameOverProps {
   userNumber: number;
+  roundsNumber: number;
+  handleStartNewGame: () => void;
 }
 
-const GameOver: React.FC<GameOverProps> = ({ userNumber }) => {
+const GameOver: React.FC<GameOverProps> = ({
+  userNumber,
+  roundsNumber,
+  handleStartNewGame,
+}) => {
   return (
     <View style={styles.rootContainer}>
       <Title title="Game Over!" />
+
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={require("../images/success.png")} />
       </View>
+
       <Text style={styles.summaryText}>
-        Your phone needed <Text style={styles.highlight}>X</Text> rounds to
-        guess the number <Text style={styles.highlight}>{userNumber}</Text>
+        Your phone needed<Text style={styles.highlight}> {roundsNumber} </Text>
+        rounds to guess the number
+        <Text style={styles.highlight}> {userNumber}</Text>
       </Text>
 
       <PrimaryButton
         title="Start a New Game"
         color={Colors.primary500}
         background="white"
-        onPress={() => console.log()}
+        onPress={() => handleStartNewGame()}
       />
     </View>
   );

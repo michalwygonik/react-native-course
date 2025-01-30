@@ -32,6 +32,8 @@ const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
   useEffect(() => {
     if (userNumber === randomNumber) {
       handleGameOver();
+      minValue = 1;
+      maxValue = 99;
     }
   }, [randomNumber, userNumber, handleGameOver]);
 
