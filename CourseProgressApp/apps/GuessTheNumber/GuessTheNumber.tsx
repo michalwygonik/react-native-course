@@ -28,7 +28,13 @@ const GuessTheNumber: React.FC = () => {
   let screen = <StartGame onPickNumber={pickedNumber} />;
 
   if (userNumber) {
-    screen = <Game userNumber={userNumber} handleGameOver={handleGameOver} />;
+    screen = (
+      <Game
+        userNumber={userNumber}
+        handleGameOver={handleGameOver}
+        setRoundsNumber={setRoundsNumber}
+      />
+    );
   }
 
   if (isGameOver && userNumber) {

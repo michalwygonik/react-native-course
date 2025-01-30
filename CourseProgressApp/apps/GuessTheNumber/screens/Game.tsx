@@ -1,14 +1,16 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, FlatList, StyleSheet, Text, View } from "react-native";
 import Title from "../components/ui/Title";
 import { useEffect, useState } from "react";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import NumberContainer from "../components/game/NumberContainer";
 import Colors from "../utils/colors";
 import { FontAwesome } from "@expo/vector-icons";
+import GuessLogItem from "../components/game/GuessLogItem";
 
 interface GameProps {
   userNumber: number;
   handleGameOver: () => void;
+  setRoundsNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 const generateRandomNumber = (
   min: number,
@@ -25,9 +27,14 @@ const generateRandomNumber = (
 let minValue = 1,
   maxValue = 99;
 
-const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
+const Game: React.FC<GameProps> = ({
+  userNumber,
+  handleGameOver,
+  setRoundsNumber,
+}) => {
   const initialGuess = generateRandomNumber(1, 99, userNumber);
   const [randomNumber, setRandomNumber] = useState<number>(initialGuess);
+  const [guessRounds, setGuessRounds] = useState<number[]>([initialGuess]);
 
   useEffect(() => {
     if (userNumber === randomNumber) {
@@ -41,29 +48,33 @@ const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
     direction: string,
     randomNumber: number,
     userNumber: number,
-    setRandomNumber: React.Dispatch<React.SetStateAction<number>>
+    setRandomNumber: React.Dispatch<React.SetStateAction<number>>,
+    setGuessRounds: React.Dispatch<React.SetStateAction<number[]>>
   ) => {
     if (direction === "lower") {
       if (randomNumber > userNumber) {
-        maxValue = randomNumber;
+        maxValue = randomNumber - 1;
 
         const random = generateRandomNumber(minValue, maxValue, randomNumber);
 
         setRandomNumber(random);
+        setGuessRounds((prevGuessRounds) => [random, ...prevGuessRounds]);
       } else {
         Alert.alert("Are you sure?", "Your number is greater");
       }
     } else if (direction === "greater") {
       if (randomNumber < userNumber) {
-        minValue = randomNumber;
+        minValue = randomNumber + 1;
 
         const random = generateRandomNumber(minValue, maxValue, randomNumber);
         setRandomNumber(random);
+        setGuessRounds((prevGuessRounds) => [random, ...prevGuessRounds]);
       } else {
         Alert.alert("Are you sure?", "Your number is lower");
       }
     }
     console.log("min: " + minValue + ", max: " + maxValue);
+    setRoundsNumber(guessRounds.length + 1);
   };
 
   return (
@@ -85,7 +96,8 @@ const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
                 "greater",
                 randomNumber,
                 userNumber,
-                setRandomNumber
+                setRandomNumber,
+                setGuessRounds
               )
             }
           />
@@ -100,11 +112,25 @@ const Game: React.FC<GameProps> = ({ userNumber, handleGameOver }) => {
                 "lower",
                 randomNumber,
                 userNumber,
-                setRandomNumber
+                setRandomNumber,
+                setGuessRounds
               )
             }
           />
         </View>
+      </View>
+      <View style={styles.itemsContainer}>
+        {
+          <FlatList
+            data={guessRounds}
+            renderItem={(itemData) => (
+              <GuessLogItem
+                roundNumber={guessRounds.length - itemData.index}
+                guess={itemData.item}
+              />
+            )}
+          />
+        }
       </View>
     </View>
   );
@@ -132,6 +158,9 @@ const styles = StyleSheet.create({
     gap: 24,
     marginHorizontal: 12,
     marginTop: 12,
+  },
+  itemsContainer: {
+    flex: 1,
   },
 });
 
