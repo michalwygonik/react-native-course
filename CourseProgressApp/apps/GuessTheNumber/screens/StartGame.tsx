@@ -1,4 +1,11 @@
-import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { useState } from "react";
 import Colors from "../utils/colors";
@@ -62,6 +69,8 @@ const StartGame: React.FC<StartGameProps> = ({ onPickNumber }) => {
   );
 };
 
+const deviceHeight = Dimensions.get("window").height;
+
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -70,7 +79,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     alignItems: "center",
     padding: 16,
-    marginTop: 60,
+    marginTop: deviceHeight > 350 ? 20 : 60, //60
     marginHorizontal: 24,
     borderRadius: 8,
     backgroundColor: Colors.primary400,

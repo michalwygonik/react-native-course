@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import Colors from "../../utils/colors";
 
 interface NumberContainerProps {
@@ -13,13 +13,15 @@ const NumberContainer: React.FC<NumberContainerProps> = ({ randomNumber }) => {
   );
 };
 
+const deviceWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
   numberContainer: {
     margin: 50,
     borderWidth: 3,
     borderColor: Colors.primary500,
     borderRadius: 5,
-    padding: 20,
+    padding: deviceWidth < 380 ? 16 : 20,
   },
   text: {
     fontSize: 22,

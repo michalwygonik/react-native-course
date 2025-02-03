@@ -13,9 +13,11 @@ const styles = StyleSheet.create({
   title: {
     margin: 5,
     fontSize: 26,
-    fontWeight: 700,
+    fontWeight: 600,
     textAlign: "center",
     color: Colors.primary400,
+    maxWidth: "80%",
+    width: 300,
   },
 });
 export default Title;
