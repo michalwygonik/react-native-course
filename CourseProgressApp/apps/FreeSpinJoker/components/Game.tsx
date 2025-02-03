@@ -3,25 +3,11 @@ import { StyleSheet, View, Button } from "react-native";
 import Colors from "../utils/colors";
 import Reel from "./game/Reel";
 
-// List of symbols for reels (you can replace these with image paths later)
-const reelSymbols = ["red", "blue", "green", "yellow", "purple"];
+interface GameProps {
+  reels: string[][]; // Accept reels as a prop
+}
 
-const Game: React.FC = () => {
-  const [reels, setReels] = useState<string[][]>([[], [], []]);
-
-  // Function to generate random symbols for the reels
-  const generateReels = () => {
-    const newReels = Array.from({ length: 3 }, () => {
-      return Array.from(
-        { length: 3 },
-        () => reelSymbols[Math.floor(Math.random() * reelSymbols.length)]
-      );
-    });
-    setReels(newReels);
-  };
-
-  console.log(reels);
-
+const Game: React.FC<GameProps> = ({ reels }) => {
   return (
     <View style={styles.gameContainer}>
       <Reel symbols={reels[0]} />

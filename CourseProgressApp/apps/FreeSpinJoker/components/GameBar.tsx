@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import Colors from "../utils/colors";
-
-const GameBar: React.FC = () => {
+interface GameBarProps {
+  generateReels: () => void; // Accept the generateReels function as a prop
+}
+const GameBar: React.FC<GameBarProps> = ({ generateReels }) => {
   return (
     <View style={styles.gameBarContainer}>
       <View>
         <Text>left</Text>
       </View>
       <View>
-        <Text>right</Text>
+        <Button title="SPIN" onPress={generateReels} />
       </View>
     </View>
   );
