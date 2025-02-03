@@ -17,7 +17,7 @@ export default function App() {
         screenOptions={{
           headerStyle: {
             backgroundColor: "#1F1F1F",
-            height: 90,
+            height: 80,
           },
 
           headerTintColor: "#f0f0f0",
@@ -30,7 +30,14 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Todo Goals" component={TodoGoals} />
         <Stack.Screen name="Guess the Number" component={GuessTheNumber} />
-        <Stack.Screen name="Free Spin Joker" component={FreeSpinJoker} />
+        <Stack.Screen
+          name="Free Spin Joker"
+          component={FreeSpinJoker}
+          options={{
+            headerStyle: { height: 40, backgroundColor: "#1F1F1F" },
+            headerTitleStyle: { fontSize: 16, fontWeight: "100" },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
