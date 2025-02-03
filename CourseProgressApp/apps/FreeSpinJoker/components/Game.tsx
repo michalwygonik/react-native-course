@@ -4,10 +4,12 @@ import Colors from "../utils/colors";
 import Reel from "./game/Reel";
 
 interface GameProps {
-  reels: string[][]; // Accept reels as a prop
+  reels: string[][];
 }
 
 const Game: React.FC<GameProps> = ({ reels }) => {
+  console.log(reels);
+
   return (
     <View style={styles.gameContainer}>
       <Reel symbols={reels[0]} />

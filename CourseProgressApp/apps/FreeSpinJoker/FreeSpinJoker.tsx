@@ -32,7 +32,7 @@ const FreeSpinJoker: React.FC = () => {
     >
       <ImageBackground
         style={styles.rootContainer}
-        source={require("./images/background.jpg")}
+        source={require("./assets/images/background.jpg")}
         resizeMode="cover"
         imageStyle={{ opacity: 0.1 }}
       >
