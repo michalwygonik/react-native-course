@@ -4,14 +4,13 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
-  View,
 } from "react-native";
 
 import * as ScreenOrientation from "expo-screen-orientation";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "./utils/colors";
-import Game from "./components/Game";
+
+import LandingScreen from "./screens/LandingScreen";
 
 const FreeSpinJoker: React.FC = () => {
   useEffect(() => {
@@ -19,10 +18,10 @@ const FreeSpinJoker: React.FC = () => {
       ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT
     );
 
-    StatusBar.setHidden(true);
+    StatusBar.setHidden(true, "fade");
     return () => {
       ScreenOrientation.unlockAsync();
-      StatusBar.setHidden(false);
+      StatusBar.setHidden(false, "fade");
     };
   }, []);
 
@@ -37,8 +36,8 @@ const FreeSpinJoker: React.FC = () => {
         resizeMode="cover"
         imageStyle={{ opacity: 0.1 }}
       >
-        <SafeAreaView>
-          <Game />
+        <SafeAreaView style={styles.rootContainer}>
+          <LandingScreen />
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
