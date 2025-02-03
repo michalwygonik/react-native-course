@@ -17,9 +17,12 @@ export default function HomeScreen({ navigation }: any) {
         >
           <Text style={styles.containerItemText}>Guess the Number</Text>
         </TouchableOpacity>
-        <View style={styles.containerItem}>
-          <Text style={styles.containerItemText}>Application 3</Text>
-        </View>
+        <TouchableOpacity
+          style={styles.containerItem}
+          onPress={() => navigation.navigate("Free Spin Joker")}
+        >
+          <Text style={styles.containerItemText}>Free Spin Joker 🃏</Text>
+        </TouchableOpacity>
         <View style={styles.containerItem}>
           <Text style={styles.containerItemText}>Application 4</Text>
         </View>

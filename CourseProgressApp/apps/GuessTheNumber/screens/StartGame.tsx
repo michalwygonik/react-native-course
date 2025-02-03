@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  useWindowDimensions,
   View,
 } from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
