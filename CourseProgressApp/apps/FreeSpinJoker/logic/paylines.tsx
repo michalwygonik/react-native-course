@@ -94,16 +94,6 @@ export const PAYLINES: number[][][] = [
     [1, 1],
     [2, 2],
   ], // Right triangle
-  [
-    [2, 0],
-    [1, 1],
-    [0, 0],
-  ], // Reverse Left Triangle
-  [
-    [2, 2],
-    [1, 1],
-    [0, 2],
-  ], // Reverse Right Triangle
 
   // ✅ **More Complex Shapes**
   [
@@ -116,16 +106,6 @@ export const PAYLINES: number[][][] = [
     [1, 1],
     [1, 2],
   ], // Half-L shape (Right)
-  [
-    [0, 2],
-    [1, 1],
-    [1, 0],
-  ], // Inverted Half-L (Left)
-  [
-    [2, 2],
-    [1, 1],
-    [1, 0],
-  ], // Inverted Half-L (Right)
 
   // 5️⃣ Crossed Patterns
   [
@@ -165,11 +145,7 @@ export const PAYLINES: number[][][] = [
     [1, 2],
     [2, 1],
   ], // X Middle
-  [
-    [0, 1],
-    [1, 0],
-    [2, 1],
-  ], // X Opposite Middle
+
   [
     [0, 0],
     [1, 1],

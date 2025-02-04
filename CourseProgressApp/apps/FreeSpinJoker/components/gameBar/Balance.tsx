@@ -2,13 +2,17 @@ import { StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Colors from "../../utils/colors";
 
-const Balance: React.FC = () => {
+interface BalanceProps {
+  credit: number;
+}
+
+const Balance: React.FC<BalanceProps> = ({ credit }) => {
   return (
     <View style={styles.balanceContainer}>
       <Ionicons name="cash-outline" size={16} color="black" />
-      <Text style={styles.balanceText}>Balance</Text>
+      <Text style={styles.balanceText}>Credit</Text>
       <View style={styles.moneyContainer}>
-        <Text style={styles.moneyText}>2000.00</Text>
+        <Text style={styles.moneyText}>{credit.toFixed(2)}</Text>
       </View>
     </View>
   );

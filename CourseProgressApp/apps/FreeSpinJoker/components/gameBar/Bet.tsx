@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import Colors from "../../utils/colors";
 
-const Bet: React.FC = () => {
+interface BetProps {
+  bet: number;
+}
+const Bet: React.FC<BetProps> = ({ bet }) => {
   return (
     <View style={styles.betContainer}>
       <Text style={styles.betText}>Bet</Text>
-      <Text style={styles.moneyText}>10.00</Text>
+      <Text style={styles.moneyText}>{bet.toFixed(2)}</Text>
     </View>
   );
 };

@@ -1,14 +1,15 @@
 import { StyleSheet, View, Button, Alert } from "react-native";
 import Colors from "../utils/colors";
 import Reel from "./game/Reel";
+
 interface Symbol {
   name: string;
-  color: string;
+  imagePath: string;
   multiplier: number;
 }
 
 interface GameProps {
-  reels: Symbol[][]; // Update to expect symbols (with name, color, and multiplier)
+  reels: Symbol[][];
 }
 const Game: React.FC<GameProps> = ({ reels }) => {
   return (

@@ -8,17 +8,25 @@ import { LinearGradient } from "expo-linear-gradient";
 
 interface GameBarProps {
   generateReels: () => void;
+  credit: number;
+  bet: number;
+  winAmount: number;
 }
-const GameBar: React.FC<GameBarProps> = ({ generateReels }) => {
+const GameBar: React.FC<GameBarProps> = ({
+  generateReels,
+  credit,
+  bet,
+  winAmount,
+}) => {
   return (
     <LinearGradient
       colors={[Colors.PlayfulYellow, Colors.WarmGlowYellow]}
       style={styles.gradientSize}
     >
       <View style={styles.gameBarContainer}>
-        <Balance />
-        <LastWin />
-        <Bet />
+        <Balance credit={credit} />
+        <LastWin winAmount={winAmount} />
+        <Bet bet={bet} />
         <SpinButton onPress={generateReels} />
       </View>
     </LinearGradient>

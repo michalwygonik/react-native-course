@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import Colors from "../../utils/colors";
-
-const LastWin: React.FC = () => {
+interface LastWinProps {
+  winAmount: number;
+}
+const LastWin: React.FC<LastWinProps> = ({ winAmount }) => {
   return (
     <View style={styles.lastWinContainer}>
       <Text style={styles.lastWinText}>Last Win</Text>
-      <Text style={styles.moneyText}>150.00</Text>
+      <Text style={styles.moneyText}>{winAmount.toFixed(2)}</Text>
     </View>
   );
 };
