@@ -26,8 +26,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 18,
+    fontSize: 24,
     color: Colors.BrightWhite,
+    fontWeight: "700",
+    letterSpacing: 1,
   },
   sideText: {
     fontSize: 12,

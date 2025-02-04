@@ -6,8 +6,9 @@ import { useState } from "react";
 import { generateReels } from "../logic/GenerateReels";
 
 const LandingScreen: React.FC = () => {
-  const [reels, setReels] = useState<string[][]>([[], [], []]);
-
+  const [reels, setReels] = useState<
+    { name: string; imagePath: string; multiplier: number }[][]
+  >([[], [], []]);
   const handleGenerateReels = () => {
     const newReels = generateReels();
     setReels(newReels);

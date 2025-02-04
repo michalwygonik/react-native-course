@@ -1,17 +1,10 @@
-// List of symbols for the reels (you can replace these with image paths later)
-const reelSymbols = [
-  "red",
-  "blue",
-  "green",
-  "yellow",
-  "purple",
-  "orange",
-  "pink",
-  "cyan",
-];
+import { reelSymbols } from "../components/symbols";
 
-// Function to generate random symbols for the reels
-export const generateReels = (): string[][] => {
+export const generateReels = (): {
+  name: string;
+  multiplier: number;
+  imagePath: string;
+}[][] => {
   return Array.from({ length: 3 }, () => {
     return Array.from(
       { length: 3 },

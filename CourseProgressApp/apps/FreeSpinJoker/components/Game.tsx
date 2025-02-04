@@ -1,21 +1,16 @@
-import { useState } from "react";
 import { StyleSheet, View, Button, Alert } from "react-native";
 import Colors from "../utils/colors";
 import Reel from "./game/Reel";
-import { checkWin } from "../logic/checkWin";
-
-interface GameProps {
-  reels: string[][];
+interface Symbol {
+  name: string;
+  color: string;
+  multiplier: number;
 }
 
+interface GameProps {
+  reels: Symbol[][]; // Update to expect symbols (with name, color, and multiplier)
+}
 const Game: React.FC<GameProps> = ({ reels }) => {
-  console.log(checkWin(reels), "wining reels: ", reels);
-
-  // if (checkWin(reels)) {
-  //   Alert.alert("🎉 You Win!", "You hit a winning payline!");
-  //   console.log("win: ", checkWin, reels);
-  // }
-
   return (
     <View style={styles.gameContainer}>
       <Reel symbols={reels[0]} />
@@ -31,6 +26,7 @@ const styles = StyleSheet.create({
   gameContainer: {
     width: "70%",
     height: "70%",
+    marginTop: -15,
     backgroundColor: Colors.DeepNavyBlue,
     borderWidth: 2,
     borderRadius: 10,

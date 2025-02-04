@@ -1,8 +1,16 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 
-const Symbol: React.FC<{ symbol: string }> = ({ symbol }) => {
-  return <View style={[styles.symbol, { backgroundColor: symbol }]}></View>;
+const Symbol: React.FC<{
+  symbol: { name: string; imagePath: string; multiplier: number };
+}> = ({ symbol }) => {
+  return (
+    <View style={[styles.symbol, { backgroundColor: symbol.name }]}>
+      <Text>multiplier: {symbol.multiplier}</Text>
+
+      <Text>imagePath: {symbol.imagePath}</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

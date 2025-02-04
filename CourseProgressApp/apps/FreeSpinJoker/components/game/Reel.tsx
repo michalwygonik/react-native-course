@@ -1,13 +1,22 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import Symbol from "./Symbol"; // Import Symbol component
+import Symbol from "./Symbol"; // Import the Symbol component
 
-// The Reel component is responsible for rendering a single column of symbols
-const Reel: React.FC<{ symbols: string[] }> = ({ symbols }) => {
+interface Symbol {
+  name: string;
+  imagePath: string;
+  multiplier: number;
+}
+
+interface ReelProps {
+  symbols: Symbol[]; // Update the symbols prop to accept an array of objects
+}
+
+const Reel: React.FC<ReelProps> = ({ symbols }) => {
   return (
     <View style={styles.reelContainer}>
       {symbols.map((symbol, index) => (
-        <Symbol key={index} symbol={symbol} />
+        <Symbol key={index} symbol={symbol} /> // Pass the entire symbol object to the Symbol component
       ))}
     </View>
   );
