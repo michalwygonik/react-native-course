@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import Game from "../components/Game";
-import GameBar from "../components/GameBar";
+import GameBar from "../components/gameBar/GameBar";
 import GameHeader from "../components/GameHeader";
 import { useState } from "react";
 import { generateReels } from "../logic/GenerateReels";
