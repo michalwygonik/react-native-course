@@ -1,39 +1,22 @@
 export const PAYLINES: number[][][] = [
-  // Horizontal Wins
+  // 1️⃣ Horizontal Wins (Left-to-right)
   [
     [0, 0],
     [0, 1],
     [0, 2],
-  ], // Top row
-  [
-    [1, 0],
-    [1, 1],
-    [1, 2],
-  ], // Middle row
-  [
-    [2, 0],
-    [2, 1],
-    [2, 2],
-  ], // Bottom row
-
-  // Vertical Wins
-  [
-    [0, 0],
-    [1, 0],
-    [2, 0],
   ], // Left column
   [
-    [0, 1],
+    [1, 0],
     [1, 1],
-    [2, 1],
+    [1, 2],
   ], // Middle column
   [
-    [0, 2],
-    [1, 2],
+    [2, 0],
+    [2, 1],
     [2, 2],
   ], // Right column
 
-  // Diagonal Wins
+  // 2️⃣ Diagonal Wins (Left-to-right)
   [
     [0, 0],
     [1, 1],
@@ -43,19 +26,52 @@ export const PAYLINES: number[][][] = [
     [0, 2],
     [1, 1],
     [2, 0],
-  ], // Top-right to bottom-left
+  ], // Bottom-left to top-right
 
-  // Zig-Zag and Advanced Patterns
+  // 3️⃣ Zig-Zags (Left-to-right)
+  [
+    [0, 0],
+    [0, 1],
+    [1, 2],
+  ], // Left Zigzag
+  [
+    [0, 1],
+    [0, 2],
+    [1, 1],
+  ], // Center Left Zigzag
+  [
+    [1, 0],
+    [1, 1],
+    [2, 2],
+  ], // Center Right Zigzag
+
+  // ✅ **Additional Zigzag Patterns**
+  [
+    [1, 0],
+    [2, 1],
+    [2, 2],
+  ], // Small Right Zigzag
+  [
+    [0, 1],
+    [1, 2],
+    [2, 1],
+  ], // Middle Upward Zigzag
+  [
+    [0, 1],
+    [1, 0],
+    [2, 1],
+  ], // Middle Downward Zigzag
+
   [
     [0, 0],
     [1, 1],
     [0, 2],
-  ], // V shape
+  ], // Top V shape
   [
     [2, 0],
     [1, 1],
     [2, 2],
-  ], // Inverted V shape
+  ], // Bottom V shape
   [
     [1, 0],
     [0, 1],
@@ -67,7 +83,7 @@ export const PAYLINES: number[][][] = [
     [1, 2],
   ], // Small downward diagonal
 
-  // More complex patterns (customize as needed)
+  // 4️⃣ Special Zigzags (Left-to-right)
   [
     [0, 0],
     [1, 1],
@@ -88,5 +104,80 @@ export const PAYLINES: number[][][] = [
     [1, 1],
     [0, 2],
   ], // Reverse Right Triangle
-  // ... (continue to 27)
+
+  // ✅ **More Complex Shapes**
+  [
+    [0, 0],
+    [1, 1],
+    [1, 2],
+  ], // Half-L shape (Left)
+  [
+    [2, 0],
+    [1, 1],
+    [1, 2],
+  ], // Half-L shape (Right)
+  [
+    [0, 2],
+    [1, 1],
+    [1, 0],
+  ], // Inverted Half-L (Left)
+  [
+    [2, 2],
+    [1, 1],
+    [1, 0],
+  ], // Inverted Half-L (Right)
+
+  // 5️⃣ Crossed Patterns
+  [
+    [0, 0],
+    [1, 2],
+    [2, 0],
+  ], // Cross Left
+  [
+    [0, 2],
+    [1, 0],
+    [2, 2],
+  ], // Cross Right
+  [
+    [0, 0],
+    [1, 0],
+    [2, 2],
+  ], // Mixed diagonal Left
+  [
+    [0, 2],
+    [1, 2],
+    [2, 0],
+  ], // Mixed diagonal Right
+
+  // 6️⃣ Special Paylines (Super rare)
+  [
+    [0, 0],
+    [2, 2],
+    [2, 0],
+  ], // Corner 3 symbols
+  [
+    [0, 2],
+    [2, 0],
+    [2, 2],
+  ], // Opposite Corner 3 symbols
+  [
+    [0, 1],
+    [1, 2],
+    [2, 1],
+  ], // X Middle
+  [
+    [0, 1],
+    [1, 0],
+    [2, 1],
+  ], // X Opposite Middle
+  [
+    [0, 0],
+    [1, 1],
+    [2, 1],
+  ], // L-Shape
+  [
+    [2, 0],
+    [1, 1],
+    [0, 1],
+  ], // Reverse L-Shape
 ];

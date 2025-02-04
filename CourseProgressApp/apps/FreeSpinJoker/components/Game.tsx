@@ -1,14 +1,20 @@
 import { useState } from "react";
-import { StyleSheet, View, Button } from "react-native";
+import { StyleSheet, View, Button, Alert } from "react-native";
 import Colors from "../utils/colors";
 import Reel from "./game/Reel";
+import { checkWin } from "../logic/checkWin";
 
 interface GameProps {
   reels: string[][];
 }
 
 const Game: React.FC<GameProps> = ({ reels }) => {
-  console.log(reels);
+  console.log(checkWin(reels), "wining reels: ", reels);
+
+  // if (checkWin(reels)) {
+  //   Alert.alert("🎉 You Win!", "You hit a winning payline!");
+  //   console.log("win: ", checkWin, reels);
+  // }
 
   return (
     <View style={styles.gameContainer}>

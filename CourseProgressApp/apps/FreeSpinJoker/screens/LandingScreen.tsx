@@ -12,6 +12,7 @@ const LandingScreen: React.FC = () => {
     const newReels = generateReels();
     setReels(newReels);
   };
+
   return (
     <View style={styles.rootContainer}>
       <GameHeader />
