@@ -11,12 +11,14 @@ interface GameBarProps {
   credit: number;
   bet: number;
   winAmount: number;
+  setBet: React.Dispatch<React.SetStateAction<number>>;
 }
 const GameBar: React.FC<GameBarProps> = ({
   generateReels,
   credit,
   bet,
   winAmount,
+  setBet,
 }) => {
   return (
     <LinearGradient
@@ -26,7 +28,7 @@ const GameBar: React.FC<GameBarProps> = ({
       <View style={styles.gameBarContainer}>
         <Balance credit={credit} />
         <LastWin winAmount={winAmount} />
-        <Bet bet={bet} />
+        <Bet bet={bet} setBet={setBet} />
         <SpinButton onPress={generateReels} />
       </View>
     </LinearGradient>

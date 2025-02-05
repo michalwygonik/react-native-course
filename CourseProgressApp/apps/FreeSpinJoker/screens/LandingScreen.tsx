@@ -8,7 +8,7 @@ import { checkWin } from "../logic/checkWin";
 
 const LandingScreen: React.FC = () => {
   const [credit, setCredit] = useState<number>(100);
-  const [bet, setBet] = useState<number>(20);
+  const [bet, setBet] = useState<number>(0.5);
   const [winAmount, setWinAmount] = useState<number>(0);
 
   const [reels, setReels] = useState<
@@ -60,6 +60,7 @@ const LandingScreen: React.FC = () => {
         generateReels={handleGenerateReels}
         credit={credit}
         bet={bet}
+        setBet={setBet}
         winAmount={winAmount}
       />
     </View>
