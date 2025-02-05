@@ -8,7 +8,7 @@ import { checkWin } from "../logic/checkWin";
 
 const LandingScreen: React.FC = () => {
   const [credit, setCredit] = useState<number>(100);
-  const [bet, setBet] = useState<number>(0.5);
+  const [bet, setBet] = useState<number>(20);
   const [winAmount, setWinAmount] = useState<number>(0);
 
   const [reels, setReels] = useState<
@@ -20,6 +20,11 @@ const LandingScreen: React.FC = () => {
   >([]);
 
   const handleGenerateReels = () => {
+    if (credit < bet) {
+      console.log("Not enough credit!");
+      return;
+    }
+
     const newReels = generateReels();
     setReels(newReels);
     setCredit(credit - bet);
@@ -27,14 +32,23 @@ const LandingScreen: React.FC = () => {
 
   useEffect(() => {
     if (reels.flat().length > 0) {
-      const symboldGrid = reels.map((row) => row.map((cell) => cell.name));
-
-      const wins = checkWin(symboldGrid);
+      const symbolGrid = reels.map((row) => row.map((cell) => cell.name));
+      const wins = checkWin(symbolGrid);
       setWinningPaylines(wins);
 
-      console.log("wins: ", wins);
+      if (wins.length > 0) {
+        let winMultiplier = wins.reduce((acc, win) => acc * win.multiplier, 1);
+        const calculatedWinAmount = bet * winMultiplier;
 
-      //setCredit((prevCredit) => prevCredit + (wins.length > 0 ? bet * 2 : 0));
+        console.log("multiplier: ", winMultiplier);
+
+        console.log("win amount: ", calculatedWinAmount);
+
+        setWinAmount(calculatedWinAmount);
+        setCredit((prevCredit) => prevCredit + calculatedWinAmount);
+      } else {
+        setWinAmount(0);
+      }
     }
   }, [reels]);
 
