@@ -19,6 +19,12 @@ const LandingScreen: React.FC = () => {
     { payline: number[][]; multiplier: number }[]
   >([]);
 
+  useEffect(() => {
+    // Generate initial reels when the component mounts
+    const initialReels = generateReels();
+    setReels(initialReels);
+  }, []);
+
   const handleGenerateReels = () => {
     if (credit < bet) {
       console.log("Not enough credit!");
