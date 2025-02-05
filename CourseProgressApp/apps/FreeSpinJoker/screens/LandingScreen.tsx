@@ -5,6 +5,7 @@ import GameHeader from "../components/GameHeader";
 import { useEffect, useState } from "react";
 import { generateReels } from "../logic/GenerateReels";
 import { checkWin } from "../logic/checkWin";
+import WinPopup from "./WinPopup";
 
 const LandingScreen: React.FC = () => {
   const [credit, setCredit] = useState<number>(100);
@@ -36,6 +37,9 @@ const LandingScreen: React.FC = () => {
     setCredit(credit - bet);
   };
 
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [winMessage, setWinMessage] = useState<string>("");
+
   useEffect(() => {
     if (reels.flat().length > 0) {
       const symbolGrid = reels.map((row) => row.map((cell) => cell.name));
@@ -52,6 +56,11 @@ const LandingScreen: React.FC = () => {
 
         setWinAmount(calculatedWinAmount);
         setCredit((prevCredit) => prevCredit + calculatedWinAmount);
+
+        const message = `You win ${calculatedWinAmount.toFixed(2)}`;
+        setWinMessage(message);
+        setModalVisible(true);
+        setTimeout(() => setModalVisible(false), 3000);
       } else {
         setWinAmount(0);
       }
@@ -68,6 +77,11 @@ const LandingScreen: React.FC = () => {
         bet={bet}
         setBet={setBet}
         winAmount={winAmount}
+      />
+      <WinPopup
+        modalVisible={modalVisible}
+        setVisible={setModalVisible}
+        message={winMessage}
       />
     </View>
   );
