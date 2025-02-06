@@ -16,7 +16,7 @@ const Symbol: React.FC<{
 const styles = StyleSheet.create({
   symbol: {
     width: 100,
-    height: "30%",
+    minHeight: "30%",
     marginVertical: 2,
   },
 });

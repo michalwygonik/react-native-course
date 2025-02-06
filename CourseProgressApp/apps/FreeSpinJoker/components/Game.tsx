@@ -11,6 +11,7 @@ interface Symbol {
 interface GameProps {
   reels: Symbol[][];
 }
+
 const Game: React.FC<GameProps> = ({ reels }) => {
   return (
     <View style={styles.gameContainer}>

@@ -1,12 +1,15 @@
 import React from "react";
 import {
   Button,
+  Image,
+  ImageBackground,
   Modal,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import Colors from "../utils/colors";
 
 interface WinPopupProps {
   modalVisible: boolean;
@@ -29,10 +32,19 @@ const WinPopup: React.FC<WinPopupProps> = ({
       <TouchableWithoutFeedback onPress={() => setVisible(false)}>
         <View style={styles.modalBackground}>
           <TouchableWithoutFeedback>
-            <View style={styles.modalContent}>
-              <Text style={styles.winText}>{message}</Text>
-              <Button title="Close" onPress={() => setVisible(false)} />
-            </View>
+            <ImageBackground
+              source={require("../assets/images/background.jpg")}
+              resizeMode="contain"
+            >
+              <View style={styles.modalContent}>
+                <Text style={styles.winText}>WIN</Text>
+                {/* <Image
+                source={require("../assets/images/symbols/oczykobry.png")}
+                style={styles.winImage}
+              /> */}
+                <Text style={styles.winAmount}>{message}</Text>
+              </View>
+            </ImageBackground>
           </TouchableWithoutFeedback>
         </View>
       </TouchableWithoutFeedback>
@@ -44,19 +56,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark background with transparency
+    backgroundColor: "rgba(83, 38, 17, 0.42)", // Dark background with transparency
   },
   modalContent: {
-    backgroundColor: "#fff",
-    padding: 20,
-    borderRadius: 10,
     alignItems: "center",
-    width: 250,
+    justifyContent: "space-between",
+    width: 350,
+    height: 180,
+  },
+  winImage: {
+    resizeMode: "cover",
   },
   winText: {
-    fontSize: 18,
+    fontSize: 48,
+
     fontWeight: "bold",
-    marginBottom: 10,
+    textShadowColor: Colors.LemonBurst,
+    textShadowRadius: 12,
+    color: Colors.SunsetOrange,
+  },
+  winAmount: {
+    fontSize: 64,
+    fontWeight: "900",
+    color: Colors.GoldYellow,
+    textShadowColor: Colors.SunsetOrange,
+    textShadowRadius: 24,
   },
 });
 export default WinPopup;

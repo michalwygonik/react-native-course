@@ -37,7 +37,7 @@ const LandingScreen: React.FC = () => {
     setCredit(credit - bet);
   };
 
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(true);
   const [winMessage, setWinMessage] = useState<string>("");
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const LandingScreen: React.FC = () => {
         setWinAmount(calculatedWinAmount);
         setCredit((prevCredit) => prevCredit + calculatedWinAmount);
 
-        const message = `You win ${calculatedWinAmount.toFixed(2)}`;
+        const message = `${calculatedWinAmount.toFixed(2)}`;
         setWinMessage(message);
         setModalVisible(true);
         setTimeout(() => setModalVisible(false), 3000);
