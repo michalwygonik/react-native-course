@@ -6,6 +6,7 @@ import TodoGoals from "./apps/TodoGoals/TodoGoals";
 import HomeScreen from "./HomeScreen";
 import GuessTheNumber from "./apps/GuessTheNumber/GuessTheNumber";
 import FreeSpinJoker from "./apps/FreeSpinJoker/FreeSpinJoker";
+import Meals from "./apps/Meals/Meals";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,7 @@ export default function App() {
             headerTitleStyle: { fontSize: 16, fontWeight: "100" },
           }}
         />
+        <Stack.Screen name="Meals" component={Meals} />
       </Stack.Navigator>
     </NavigationContainer>
   );
