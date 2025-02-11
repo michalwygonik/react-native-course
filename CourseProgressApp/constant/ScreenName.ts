@@ -3,5 +3,9 @@ export enum ScreenName {
   TodoGoals = "TodoGoals",
   GuessTheNumber = "GuessTheNumber",
   FreeSpinJoker = "FreeSpinJoker",
+
+  //Meals APP
   Meals = "Meals",
+  Categories = "Categories",
+  MealsOverview = "MealsOverview",
 }

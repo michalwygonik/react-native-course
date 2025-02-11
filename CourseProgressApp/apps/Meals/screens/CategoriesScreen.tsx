@@ -2,10 +2,14 @@ import React from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryGridTile from "../components/CategoryGridTile";
-import { useNavigation } from "@react-navigation/native";
 
-const CategoriesScreen: React.FC = () => {
-  const navigation = useNavigation();
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../../navigation/RootStackParamList";
+import { ScreenName } from "../../../constant/ScreenName";
+
+type Props = NativeStackScreenProps<RootStackParamList, ScreenName.Categories>;
+
+const CategoriesScreen: React.FC<Props> = ({ navigation }) => {
   const renderCategoryItem = ({
     item,
   }: ListRenderItemInfo<{ id: string; title: string; color: string }>) => {
@@ -13,7 +17,7 @@ const CategoriesScreen: React.FC = () => {
       <CategoryGridTile
         title={item.title}
         color={item.color}
-        onPress={() => navigation.navigate("Meals overview")}
+        onPress={() => navigation.navigate(ScreenName.MealsOverview)}
       />
     );
   };

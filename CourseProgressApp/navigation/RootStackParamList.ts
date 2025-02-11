@@ -3,5 +3,8 @@ export type RootStackParamList = {
   TodoGoals: undefined;
   GuessTheNumber: undefined;
   FreeSpinJoker: undefined;
+  //Meals APP
   Meals: undefined;
+  Categories: undefined;
+  MealsOverview: undefined;
 };
