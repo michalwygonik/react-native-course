@@ -11,8 +11,16 @@ import { LinearGradient } from "expo-linear-gradient";
 import Colors from "./utils/colors";
 
 import LandingScreen from "./screens/LandingScreen";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/RootStackParamList";
+import { ScreenName } from "../../constant/ScreenName";
 
-const FreeSpinJoker: React.FC = () => {
+type Props = NativeStackScreenProps<
+  RootStackParamList,
+  ScreenName.FreeSpinJoker
+>;
+
+const FreeSpinJoker: React.FC<Props> = () => {
   useEffect(() => {
     ScreenOrientation.lockAsync(
       ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT

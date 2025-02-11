@@ -1,31 +1,43 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  StatusBar,
+} from "react-native";
+import { ScreenName } from "./constant/ScreenName";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./navigation/RootStackParamList";
 
-export default function HomeScreen({ navigation }: any) {
+type Props = NativeStackScreenProps<RootStackParamList, ScreenName.Home>;
+
+export default function HomeScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.listContainer}>
         <TouchableOpacity
           style={styles.containerItem}
-          onPress={() => navigation.navigate("Todo Goals")}
+          onPress={() => navigation.navigate(ScreenName.TodoGoals)}
         >
           <Text style={styles.containerItemText}>Todo Goals</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.containerItem}
-          onPress={() => navigation.navigate("Guess the Number")}
+          onPress={() => navigation.navigate(ScreenName.GuessTheNumber)}
         >
           <Text style={styles.containerItemText}>Guess the Number</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.containerItem}
-          onPress={() => navigation.navigate("Free Spin Joker")}
+          onPress={() => navigation.navigate(ScreenName.FreeSpinJoker)}
         >
           <Text style={styles.containerItemText}>Free Spin Joker 🃏</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.containerItem}
-          onPress={() => navigation.navigate("Meals")}
+          onPress={() => navigation.navigate(ScreenName.Meals)}
         >
           <Text style={styles.containerItemText}>Meals</Text>
         </TouchableOpacity>

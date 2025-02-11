@@ -5,8 +5,16 @@ import { useState } from "react";
 import Game from "./screens/Game";
 import Colors from "./utils/colors";
 import GameOver from "./screens/GameOver";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/RootStackParamList";
+import { ScreenName } from "../../constant/ScreenName";
 
-const GuessTheNumber: React.FC = () => {
+type Props = NativeStackScreenProps<
+  RootStackParamList,
+  ScreenName.GuessTheNumber
+>;
+
+const GuessTheNumber: React.FC<Props> = () => {
   const [userNumber, setUserNumber] = useState<number | null>(null);
   const [isGameOver, setIsGameOver] = useState<boolean>(true);
   const [roundsNumber, setRoundsNumber] = useState<number>(0);

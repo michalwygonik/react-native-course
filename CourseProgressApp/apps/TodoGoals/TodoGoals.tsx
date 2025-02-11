@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, View, Button } from "react-native";
 import GoalInput from "./components/GoalInput";
 import GoalsList from "./components/GoalsList";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/RootStackParamList";
+import { ScreenName } from "../../constant/ScreenName";
 
-const TodoGoals: React.FC = () => {
+type Props = NativeStackScreenProps<RootStackParamList, ScreenName.TodoGoals>;
+
+const TodoGoals: React.FC<Props> = () => {
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [goalText, setGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState<
