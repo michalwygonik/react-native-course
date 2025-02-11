@@ -10,6 +10,7 @@ import { ScreenName } from "../../../constant/ScreenName";
 type Props = NativeStackScreenProps<RootStackParamList, ScreenName.Categories>;
 
 const CategoriesScreen: React.FC<Props> = ({ navigation }) => {
+  //render a category tile
   const renderCategoryItem = ({
     item,
   }: ListRenderItemInfo<{ id: string; title: string; color: string }>) => {
@@ -17,7 +18,9 @@ const CategoriesScreen: React.FC<Props> = ({ navigation }) => {
       <CategoryGridTile
         title={item.title}
         color={item.color}
-        onPress={() => navigation.navigate(ScreenName.MealsOverview)}
+        onPress={() =>
+          navigation.navigate(ScreenName.MealsOverview, { categoryId: item.id })
+        }
       />
     );
   };

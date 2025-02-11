@@ -1,10 +1,10 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-interface CategoryGridTileProps {
+type CategoryGridTileProps = {
   title: string;
   color: string;
   onPress: () => void;
-}
+};
 
 const CategoryGridTile: React.FC<CategoryGridTileProps> = ({
   title,
