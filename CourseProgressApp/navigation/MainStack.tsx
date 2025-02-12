@@ -18,10 +18,25 @@ const Drawer = createDrawerNavigator<RootStackParamList>();
 
 const DrawerNavigation = () => {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#1F1F1F",
+        },
+
+        headerTintColor: "#f0f0f0",
+        headerTitleStyle: {
+          fontWeight: "100",
+          fontSize: 18,
+        },
+        drawerContentStyle: { backgroundColor: "#1F1F1F" },
+        drawerInactiveTintColor: "white",
+      }}
+    >
       <Drawer.Screen
         name={ScreenName.Categories}
         component={CategoriesScreen}
+        options={{ title: "All Categories" }}
       />
       <Drawer.Screen name={ScreenName.Favorites} component={Favorites} />
     </Drawer.Navigator>
@@ -55,7 +70,9 @@ const MainStack = () => {
       <Stack.Screen
         name={ScreenName.Categories}
         component={DrawerNavigation}
-        options={{ title: "All Categories" }}
+        options={{
+          headerShown: false,
+        }}
       />
       <Stack.Screen name={ScreenName.MealsOverview} component={MealsOverview} />
       <Stack.Screen name={ScreenName.MealDetail} component={MealDetail} />
