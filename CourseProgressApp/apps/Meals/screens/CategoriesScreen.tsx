@@ -9,8 +9,6 @@ import { ScreenName } from "../../../constant/ScreenName";
 
 type Props = NativeStackScreenProps<RootStackParamList, ScreenName.Categories>;
 
-// TODO: -> NAVIGATE FROM CATEGORIES INTO MEALDETAIL USING CATEGORIES NAVIGATE CONST THROUGH THE MEALITEM
-
 const CategoriesScreen: React.FC<Props> = ({ navigation }) => {
   //render a category tile
   const renderCategoryItem = ({
@@ -25,10 +23,6 @@ const CategoriesScreen: React.FC<Props> = ({ navigation }) => {
         }
       />
     );
-  };
-
-  const navigateToDetails = () => {
-    navigation.navigate(ScreenName.MealDetail);
   };
 
   return (
