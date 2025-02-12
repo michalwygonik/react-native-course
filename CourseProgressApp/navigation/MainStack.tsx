@@ -9,6 +9,7 @@ import { RootStackParamList } from "./RootStackParamList";
 import { ScreenName } from "../constant/ScreenName";
 import CategoriesScreen from "../apps/Meals/screens/CategoriesScreen";
 import MealsOverview from "../apps/Meals/screens/MealsOverview";
+import MealDetail from "../apps/Meals/screens/MealDetail";
 
 const MainStack = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -35,8 +36,13 @@ const MainStack = () => {
       />
       <Stack.Screen name={ScreenName.FreeSpinJoker} component={FreeSpinJoker} />
       <Stack.Screen name={ScreenName.Meals} component={Meals} />
-      <Stack.Screen name={ScreenName.Categories} component={CategoriesScreen} />
+      <Stack.Screen
+        name={ScreenName.Categories}
+        component={CategoriesScreen}
+        options={{ title: "All Categories" }}
+      />
       <Stack.Screen name={ScreenName.MealsOverview} component={MealsOverview} />
+      <Stack.Screen name={ScreenName.MealDetail} component={MealDetail} />
     </Stack.Navigator>
   );
 };

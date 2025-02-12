@@ -8,4 +8,5 @@ export enum ScreenName {
   Meals = "Meals",
   Categories = "Categories",
   MealsOverview = "MealsOverview",
+  MealDetail = "MealDetail",
 }

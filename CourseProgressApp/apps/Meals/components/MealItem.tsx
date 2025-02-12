@@ -1,28 +1,41 @@
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import React from "react";
 import Meal from "../models/meal";
+import { ScreenName } from "../../../constant/ScreenName";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../../navigation/RootStackParamList";
 
 type MealItemProps = {
   data: Meal;
 };
 
 const MealItem: React.FC<MealItemProps> = ({ data }) => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <Pressable
       style={({ pressed }) => [
         styles.mealItem,
         pressed ? { transform: [{ scale: 0.97 }] } : null,
       ]}
+      onPress={() =>
+        navigation.navigate(ScreenName.MealDetail, { mealId: data.id })
+      }
     >
       <View>
         <Image source={{ uri: data.imageUrl }} style={styles.image} />
         <Text style={styles.mealTitle}>{data.title}</Text>
       </View>
+
       <View style={styles.mealDetailsContainer}>
         <Text style={styles.mealDetailsText}>{data.duration} min</Text>
+
         <Text style={styles.mealDetailsText}>
           {data.complexity.toUpperCase()}
         </Text>
+
         <Text style={styles.mealDetailsText}>
           {data.affordability.toUpperCase()}
         </Text>
