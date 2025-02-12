@@ -1,9 +1,17 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { useLayoutEffect } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../navigation/RootStackParamList";
 import { ScreenName } from "../../../constant/ScreenName";
 import { MEALS } from "../data/dummy-data";
+import IconButton from "../components/IconButton";
 
 type Props = NativeStackScreenProps<RootStackParamList, ScreenName.MealDetail>;
 
@@ -12,9 +20,16 @@ const MealDetail: React.FC<Props> = ({ route, navigation }) => {
 
   const meal = MEALS.find((mealItem) => mealItem.id === mealId);
 
+  const headerButtonPressed = () => {
+    return console.log("press");
+  };
+
   useLayoutEffect(() => {
     if (meal) {
-      navigation.setOptions({ title: meal.title });
+      navigation.setOptions({
+        title: meal.title,
+        headerRight: () => <IconButton onPress={headerButtonPressed} />,
+      });
     }
   }, [meal, navigation]);
   return (
@@ -89,6 +104,7 @@ const styles = StyleSheet.create({
   mealDetailsContainer: {
     padding: 12,
     gap: 22,
+    marginBottom: 12,
   },
 
   detailsTitle: {
@@ -107,7 +123,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 120,
+    height: 260,
     resizeMode: "cover",
   },
 });
