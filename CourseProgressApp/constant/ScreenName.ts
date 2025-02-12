@@ -7,6 +7,7 @@ export enum ScreenName {
   //Meals APP
   Meals = "Meals",
   Categories = "Categories",
+  Favorites = "Favorites",
   MealsOverview = "MealsOverview",
   MealDetail = "MealDetail",
 }

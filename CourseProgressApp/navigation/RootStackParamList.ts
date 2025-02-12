@@ -6,6 +6,7 @@ export type RootStackParamList = {
   //Meals APP
   Meals: undefined;
   Categories: undefined;
+  Favorites: undefined;
   MealsOverview: { categoryId: string };
   MealDetail: { mealId: string };
 };
